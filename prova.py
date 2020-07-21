@@ -2,6 +2,8 @@ import cityflow
 
 eng = cityflow.Engine(config_file="config.json", thread_num=1)
 
-while True:
+for _ in range(100):
     eng.next_step()
-    print(eng.get_vehicle_count())
+
+
+print(list(eng.get_lane_vehicle_count().values()))
