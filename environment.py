@@ -7,6 +7,7 @@ class cityEnv(gym.Env):
         self.steps = 0
         self.action_space=gym.spaces.Discrete(8)
         self.eng = cityflow.Engine(config_file="config.json", thread_num=1)
+        self.verbose = False
 
     def step(self,action):
         self.steps += 1
@@ -14,11 +15,16 @@ class cityEnv(gym.Env):
         self.eng.set_tl_phase("intersection_1_1",action)
         self.eng.next_step()
         reward = -self.eng.get_vehicle_count()
+        if self.verbose:
+            print(reward)
         return self.get_obs(), reward, done, {}
 
     def get_obs(self):
         return list(self.eng.get_lane_vehicle_count().values())
-        
+    
+    def set_verbose(self, verbose):
+        self.verbose = verbose and True
+
     def reset(self):
         self.eng = cityflow.Engine(config_file="config.json", thread_num=1)
         self.steps = 0

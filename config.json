@@ -4,7 +4,7 @@
 	"dir": "/home/tonio/CityFlow/examples/",
 	"roadnetFile": "roadnet.json", 
 	"flowFile": "flow.json", 
-	"rlTrafficLight": true,
+	"rlTrafficLight": false,
 	"laneChange": false,
 	"saveReplay": false,
 	"roadnetLogFile": "replay_roadnet.json", 
